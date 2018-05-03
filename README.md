@@ -30,7 +30,7 @@ Build APK on Android Studio
 
 ## Project Status
 
-The project is at its minimal valuable product (MVP) version. There's a lot to do before releasing v1, so feel free to contribute!
+The project is at its minimum viable product (MVP) version. There's a lot to do before releasing v1, so feel free to contribute!
 
 ## References
 
