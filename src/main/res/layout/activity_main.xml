@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:orientation="vertical">
+    <Button
+        android:id="@+id/addClimbingSession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_add_climbing_session"/>
+
+    <Button
+            android:id="@+id/showPersonalChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_show_personal_chart"/>
+
+
+    <Button
+            android:id="@+id/showPointsChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_show_points_chart"/>
+
+    <Button
+            android:id="@+id/showRanking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_show_ranking"/>
+
+</LinearLayout>

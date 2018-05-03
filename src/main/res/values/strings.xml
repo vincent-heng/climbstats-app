@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ClimbStats</string>
+
+    <!-- Titles -->
+    <string name="title_activity_main">ClimbStats</string>
+    <string name="title_activity_add_climbing_session">Ajouter une nouvelle séance</string>
+    <string name="title_activity_show_personal_chart">Graphique personnel</string>
+    <string name="title_activity_show_points_chart">Graphique par points</string>
+    <string name="title_activity_show_ranking">Classement</string>
+
+    <!-- Main Activity -->
+
+    <!-- Add Climbing Session Activity -->
+    <string name="prompt_name">Nom du sportif</string>
+    <string name="prompt_comments">Commentaires de séance</string>
+    <string name="prompt_location">Lieu (Arkose, Blockbuster…)</string>
+    <string name="action_add">Ajouter Session</string>
+    <string name="error_field_required">Champ obligatoire</string>
+    <string name="add_label_color_name">Couleur</string>
+    <string name="add_label_color_number">Nombre</string>
+
+    <!-- Ranking Activity -->
+    <string name="ranking_label_rank">Rang</string>
+    <string name="ranking_label_username">Nom</string>
+    <string name="ranking_label_best_score">Meilleur score</string>
+    <string name="ranking_label_date">Date</string>
+    <string name="ranking_label_location">Lieu</string>
+</resources>
