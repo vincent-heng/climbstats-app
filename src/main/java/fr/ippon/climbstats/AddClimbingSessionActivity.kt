@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.EditText
+import fr.ippon.climbstats.Utils.isNetwork
 import fr.ippon.climbstats.retrofit.ApiRepositoryProvider
 import fr.ippon.climbstats.retrofit.model.ClimbingSession
 import fr.ippon.climbstats.retrofit.model.Location
@@ -104,7 +105,7 @@ class AddClimbingSessionActivity : AppCompatActivity(), AnkoLogger {
 
     private fun fetchLocations(callback: (List<Location>) -> Unit) {
         info("Fetch Locations")
-        if (!isNetwork()) {
+        if (!isNetwork(ctx)) {
             toast(resources.getString(R.string.toast_network_issue))
             return
         }
@@ -117,7 +118,7 @@ class AddClimbingSessionActivity : AppCompatActivity(), AnkoLogger {
 
     private fun recordClimbingSession(climbingSession: ClimbingSession, callback: (ClimbingSession) -> Unit) {
         info("Record Climbing session")
-        if (!isNetwork()) {
+        if (!isNetwork(ctx)) {
             toast(resources.getString(R.string.toast_network_issue))
             return
         }
@@ -127,14 +128,6 @@ class AddClimbingSessionActivity : AppCompatActivity(), AnkoLogger {
             warning(error.message)
             toast(resources.getString(R.string.toast_add_issue))
         })
-    }
-
-    private fun isNetwork() : Boolean {
-        val cs = getSystemService(Context.CONNECTIVITY_SERVICE)
-        if (cs is ConnectivityManager) {
-            return cs.activeNetworkInfo.isConnected
-        }
-        return false
     }
 
     private fun @AnkoViewDslMarker _TableRow.addTableCell(content: String) {

@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_points.*
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
@@ -86,7 +87,7 @@ class PointsChartActivity : AppCompatActivity(), AnkoLogger {
 
     private fun fetchPointsMap(callback: (Map<String, List<Point>>) -> Unit) {
         info("Fetch Points Map")
-        if (!isNetwork(this)) {
+        if (!isNetwork(ctx)) {
             toast(resources.getString(R.string.toast_network_issue))
             return
         }

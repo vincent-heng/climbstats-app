@@ -97,7 +97,7 @@ class PersonalChartActivity : AppCompatActivity(), AnkoLogger {
 
     private fun fetchUsernames(callback: (List<User>) -> Unit) {
         info("Fetch Usernames")
-        if (!isNetwork(this)) {
+        if (!isNetwork(ctx)) {
             toast(resources.getString(R.string.toast_network_issue))
             return
         }
@@ -112,7 +112,7 @@ class PersonalChartActivity : AppCompatActivity(), AnkoLogger {
 
     private fun fetchClimbingSessions(username: String, callback: (List<ClimbingSession>) -> Unit) {
         info("Fetch Climbing Sessions")
-        if (!isNetwork(this)) {
+        if (!isNetwork(ctx)) {
             toast(resources.getString(R.string.toast_network_issue))
             return
         }

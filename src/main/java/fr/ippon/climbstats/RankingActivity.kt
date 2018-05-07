@@ -31,7 +31,7 @@ class RankingActivity : AppCompatActivity(), AnkoLogger {
 
     private fun fetchRanking() {
         info("Fetch Ranking")
-        if (!isNetwork(this)) {
+        if (!isNetwork(ctx)) {
             toast(resources.getString(R.string.toast_network_issue))
             return
         }
