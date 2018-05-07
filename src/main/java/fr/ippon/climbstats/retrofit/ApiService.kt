@@ -1,13 +1,18 @@
 package fr.ippon.climbstats.retrofit
 
+import android.content.res.Resources
 import com.google.gson.GsonBuilder
+import fr.ippon.climbstats.R
 import fr.ippon.climbstats.retrofit.model.ClimbingSession
 import fr.ippon.climbstats.retrofit.model.Location
 import fr.ippon.climbstats.retrofit.model.Point
 import fr.ippon.climbstats.retrofit.model.User
 import io.reactivex.Observable
 import org.joda.time.DateTime
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 interface ApiService {
@@ -39,7 +44,7 @@ interface ApiService {
             val retrofit = retrofit2.Retrofit.Builder()
                     .addCallAdapterFactory(retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory.create())
                     .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson))
-                    .baseUrl("http://climbstats.herokuapp.com/")
+                    .baseUrl(Resources.getSystem().getString(R.string.api_url))
                     .build()
 
             return retrofit.create(ApiService::class.java)
