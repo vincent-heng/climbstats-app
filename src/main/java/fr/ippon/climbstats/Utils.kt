@@ -7,7 +7,6 @@ import fr.ippon.climbstats.retrofit.model.Point
 import fr.ippon.climbstats.retrofit.model.Route
 import org.joda.time.DateTime
 import java.util.*
-import kotlin.collections.HashMap
 
 object Utils {
     fun isNetwork(ctx : Context) : Boolean {
@@ -49,28 +48,26 @@ object Utils {
     }
 
     fun generateFakePointsMap(): Map<String, List<Point>> {
-        val pointsMap = HashMap<String, List<Point>>()
-        val jeanPoints = java.util.ArrayList<Point>()
+        val jeanPoints = mutableListOf<Point>()
         for (i in 0..9) {
             val randomScore = ((Math.random() * 70) + 3).toInt()
             jeanPoints += Point(date = DateTime.now().minusDays(i), score = randomScore)
         }
-        pointsMap["Jean"] = jeanPoints
 
-        val rogerPoints = java.util.ArrayList<Point>()
+        val rogerPoints = mutableListOf<Point>()
         for (i in 0..9) {
             val randomScore = ((Math.random() * 70) + 3).toInt()
             rogerPoints += Point(date = DateTime.now().minusDays(i), score = randomScore)
         }
-        pointsMap["Roger"] = rogerPoints
-        return pointsMap
+
+        return mapOf("Jean" to jeanPoints, "Roger" to rogerPoints)
     }
 
     fun generateFakeLocations(): Map<String, List<String>> {
-        val locations = HashMap<String, List<String>>()
-        locations["Arkose"] = listOf("Jaune", "Vert", "Bleu")
-        locations["Blockout"] = listOf("Jaune", "Orange", "Vert", "Bleu")
-        locations["Blockbuster"] = listOf("Jaune", "Vert", "Bleu", "Rouge")
-        return locations
+        return mapOf(
+                "Arkose" to listOf("Jaune", "Vert", "Bleu"),
+                "Blockout" to listOf("Jaune", "Orange", "Vert", "Bleu"),
+                "Blockbuster" to listOf("Jaune", "Vert", "Bleu", "Rouge")
+        )
     }
 }
