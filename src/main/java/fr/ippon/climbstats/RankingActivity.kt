@@ -8,6 +8,7 @@ import fr.ippon.climbstats.retrofit.ApiRepositoryProvider
 import fr.ippon.climbstats.retrofit.model.ClimbingSession
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import junit.framework.TestSuite.warning
 import kotlinx.android.synthetic.main.activity_ranking.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -31,15 +32,15 @@ class RankingActivity : AppCompatActivity(), AnkoLogger {
     private fun fetchRanking() {
         info("Fetch Ranking")
         if (!isNetwork(this)) {
-            toast("Pas de connexion")
+            toast(resources.getString(R.string.toast_network_issue))
             return
         }
         val climbingSessionsObservable = ApiRepositoryProvider.provideRepository().findRanking()
         climbingSessionsObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe({result ->
             updateTable(result)
         }, { error ->
-            info(error.message)
-            toast("Serveur indisponible")
+            warning(error.message)
+            toast(resources.getString(R.string.toast_request_issue))
         })
     }
 

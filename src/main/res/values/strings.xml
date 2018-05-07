@@ -25,4 +25,10 @@
     <string name="ranking_label_best_score">Meilleur score</string>
     <string name="ranking_label_date">Date</string>
     <string name="ranking_label_location">Lieu</string>
+
+    <!-- Toasts -->
+    <string name="toast_network_issue">Pas de connexion</string>
+    <string name="toast_request_issue">Serveur indisponible</string>
+    <string name="toast_add_success">Séance ajoutée</string>
+    <string name="toast_add_issue">Requête invalide ou serveur indisponible</string>
 </resources>

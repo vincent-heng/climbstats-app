@@ -47,7 +47,8 @@ class AddClimbingSessionActivity : AppCompatActivity(), AnkoLogger {
                     )
             recordClimbingSession(climbingSession, {
                 startActivity<MainActivity>()
-                toast("Added")
+                toast(resources.getString(R.string.toast_add_success))
+
             })
         }
     }
@@ -104,27 +105,27 @@ class AddClimbingSessionActivity : AppCompatActivity(), AnkoLogger {
     private fun fetchLocations(callback: (List<Location>) -> Unit) {
         info("Fetch Locations")
         if (!isNetwork()) {
-            toast("Pas de connexion")
+            toast(resources.getString(R.string.toast_network_issue))
             return
         }
         val locationsObservable = ApiRepositoryProvider.provideRepository().findAllLocations()
         locationsObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(callback, { error ->
             warning(error.message)
-            toast("Serveur indisponible")
+            toast(resources.getString(R.string.toast_request_issue))
         })
     }
 
     private fun recordClimbingSession(climbingSession: ClimbingSession, callback: (ClimbingSession) -> Unit) {
         info("Record Climbing session")
         if (!isNetwork()) {
-            toast("Pas de connexion")
+            toast(resources.getString(R.string.toast_network_issue))
             return
         }
         val csWithFilteredRoutes = climbingSession.copy(routes = climbingSession.routes.filter { route -> route.number > 0 })
         val addObservable = ApiRepositoryProvider.provideRepository().addClimbingSession(csWithFilteredRoutes)
         addObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(callback, { error ->
             warning(error.message)
-            toast("Serveur indisponible ou informations erronées")
+            toast(resources.getString(R.string.toast_add_issue))
         })
     }
 

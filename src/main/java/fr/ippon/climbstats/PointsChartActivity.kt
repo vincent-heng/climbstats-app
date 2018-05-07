@@ -16,6 +16,7 @@ import fr.ippon.climbstats.retrofit.ApiRepositoryProvider
 import fr.ippon.climbstats.retrofit.model.Point
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import junit.framework.TestSuite.warning
 import kotlinx.android.synthetic.main.activity_points.*
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
@@ -34,10 +35,6 @@ class PointsChartActivity : AppCompatActivity(), AnkoLogger {
         fetchPointsMap { pointsMap ->
             drawChart(pointsMap)
         }
-/*        async(CommonPool) {
-            val pointsMap = generateFakePointsMap()
-            drawChart(pointsMap)
-        }*/
     }
 
     private fun drawChart(pointsMap: Map<String, List<Point>>) {
@@ -90,15 +87,15 @@ class PointsChartActivity : AppCompatActivity(), AnkoLogger {
     private fun fetchPointsMap(callback: (Map<String, List<Point>>) -> Unit) {
         info("Fetch Points Map")
         if (!isNetwork(this)) {
-            toast("Pas de connexion")
+            toast(resources.getString(R.string.toast_network_issue))
             return
         }
         val mapPointsObservable = ApiRepositoryProvider.provideRepository().findMapPoints()
         mapPointsObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(callback, { error ->
-                    info(error.message)
-                    toast("Serveur indisponible")
+                    warning(error.message)
+                    toast(resources.getString(R.string.toast_request_issue))
                 })
     }
 

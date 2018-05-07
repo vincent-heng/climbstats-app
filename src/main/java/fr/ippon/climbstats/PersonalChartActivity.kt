@@ -98,7 +98,7 @@ class PersonalChartActivity : AppCompatActivity(), AnkoLogger {
     private fun fetchUsernames(callback: (List<User>) -> Unit) {
         info("Fetch Usernames")
         if (!isNetwork(this)) {
-            toast("Pas de connexion")
+            toast(resources.getString(R.string.toast_network_issue))
             return
         }
         val usernamesObservable = ApiRepositoryProvider.provideRepository().findAllUsernames()
@@ -106,14 +106,14 @@ class PersonalChartActivity : AppCompatActivity(), AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(callback, { error ->
                     warning(error.message)
-                    toast("Serveur indisponible")
+                    toast(resources.getString(R.string.toast_request_issue))
                 })
     }
 
     private fun fetchClimbingSessions(username: String, callback: (List<ClimbingSession>) -> Unit) {
         info("Fetch Climbing Sessions")
         if (!isNetwork(this)) {
-            toast("Pas de connexion")
+            toast(resources.getString(R.string.toast_network_issue))
             return
         }
         val mapPointsObservable = ApiRepositoryProvider.provideRepository().findClimbingSessionsByUsername(username)
@@ -121,7 +121,7 @@ class PersonalChartActivity : AppCompatActivity(), AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(callback, { error ->
                     info(error.message)
-                    toast("Serveur indisponible")
+                    toast(resources.getString(R.string.toast_request_issue))
                 })
     }
 
