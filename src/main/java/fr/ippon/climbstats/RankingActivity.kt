@@ -20,12 +20,12 @@ class RankingActivity : AppCompatActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking)
 
-        fetchRanking()
-//        fetchRankingMock()
+//        fetchRanking()
+        fetchRankingMock()
 
         update_ranking_button.onClick {
-            fetchRanking()
-//            fetchRankingMock()
+//            fetchRanking()
+            fetchRankingMock()
         }
     }
 

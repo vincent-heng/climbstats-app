@@ -1,7 +1,7 @@
 package fr.ippon.climbstats.retrofit
 
-import android.content.res.Resources
 import com.google.gson.GsonBuilder
+import fr.ippon.climbstats.MainActivity
 import fr.ippon.climbstats.R
 import fr.ippon.climbstats.retrofit.model.ClimbingSession
 import fr.ippon.climbstats.retrofit.model.Location
@@ -44,7 +44,7 @@ interface ApiService {
             val retrofit = retrofit2.Retrofit.Builder()
                     .addCallAdapterFactory(retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory.create())
                     .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create(gson))
-                    .baseUrl(Resources.getSystem().getString(R.string.api_url))
+                    .baseUrl(MainActivity.applicationContext().resources.getString(R.string.api_url))
                     .build()
 
             return retrofit.create(ApiService::class.java)
